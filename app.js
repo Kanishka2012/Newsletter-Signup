@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express=require("express");
 const bodyParser=require("body-parser");
 const https = require("https");
@@ -30,11 +31,10 @@ app.post("/", function(req,res){
      };
      const jsonData=JSON.stringify(data);
      
-     url="https://us14.api.mailchimp.com/3.0/lists/af88ee8c75";
+     url="https://us14.api.mailchimp.com/3.0/lists/"+process.env.LIST_ID;
      const options={
         method:"POST",
-        auth:"Kanishka:18aa2b924becb3637a0d26496be6a323-us14"
-
+        auth:"Kanishka:"+process.env.API_KEY
      };
 
      const request=https.request(url, options, function(response){
@@ -62,8 +62,3 @@ app.listen(process.env.PORT || 3000,function(){
     console.log("server listening to port 3000");
 });
 
-// apikey
-// 18aa2b924becb3637a0d26496be6a323-us14
-
-//list id
-//
